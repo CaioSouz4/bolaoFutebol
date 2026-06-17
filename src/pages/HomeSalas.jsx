@@ -92,7 +92,7 @@ export default function HomeSalas() {
             placeholder="Digite a senha da sala"
             value={senhaTentativa}
             onChange={(e) => setSenhaTentativa(e.target.value)}
-            className="w-full p-3 rounded-lg text-white font-medium text-center outline-none focus:ring-2 focus:ring-yellow-400"
+            className="w-full mt-2 p-3 bg-gray-700 rounded-lg text-white font-medium text-center outline-none focus:ring-2 focus:ring-yellow-400"
           />
           <button type="submit" className="w-full bg-yellow-400 hover:bg-yellow-300 text-gray-950 font-bold py-3 rounded-lg transition-colors">
             Entrar no Bolão

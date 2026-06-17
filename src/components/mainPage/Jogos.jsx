@@ -5,8 +5,8 @@ import matchesData from '../../utils/copaJogos2026';
 import Palpites from './Palpites.jsx';
 import { useParams } from 'react-router-dom';
 import Convite from './Convite.jsx';
+import { getBandeiraUrl } from '../../utils/flags';
 
-const getBandeiraUrl = (sigla) => `https://flagcdn.com/${sigla}.svg`;
 
 const formatData = (date) => {
   const d = new Date(date);
@@ -33,13 +33,22 @@ export default function Jogos() {
   const now = new Date();
   const jogosOrdenados = [...matchesData.groupStageMatches].sort((a, b) => a.date - b.date);
 
-
   const jogoDestaque = jogosOrdenados.find(jogo => {
     if (jogo.encerrado) return false;
     const horarioInicio = new Date(jogo.date);
-    const horarioTermino = new Date(horarioInicio.getTime() + (1.5 * 60 * 60 * 1000));
+    const horarioTermino = new Date(horarioInicio.getTime() + (2 * 60 * 60 * 1000)); 
+    
     return now < horarioTermino;
   });
+
+  const jogoAnterior = [...jogosOrdenados]
+    .reverse()
+    .find(jogo => {
+      if (jogoDestaque && jogo.id === jogoDestaque.id) return false;
+      const horarioInicio = new Date(jogo.date);
+      const horarioTermino = new Date(horarioInicio.getTime() + (2 * 60 * 60 * 1000));
+      return now >= horarioTermino;
+    });
 
 
   const próximosJogosFiltrados = jogosOrdenados.filter(jogo => {
@@ -59,10 +68,9 @@ export default function Jogos() {
 
 
   useEffect(() => {
-    if (!jogoDestaque?.id) return;
-
     const idsJogosAtivos = [jogoDestaque.id, ...outrosJogos.map(j => j.id)];
-
+    if (jogoAnterior?.id) idsJogosAtivos.push(jogoAnterior.id);
+    
     const q = query(
       collection(db, "palpites"),
       where("jogoId", "in", idsJogosAtivos),
@@ -78,7 +86,7 @@ export default function Jogos() {
     });
 
     return () => unsubscribe();
-  }, [jogoDestaque?.id, outrosJogos.map(j => j.id).join(','), idSalaUrl]);
+  }, [jogoDestaque?.id, jogoAnterior?.id, outrosJogos.map(j => j.id).join(','), idSalaUrl]);
 
   const handlePlacarChange = (time, valor) => {
     setPalpiteAtual(prev => ({ ...prev, [time]: valor }));
@@ -108,13 +116,16 @@ export default function Jogos() {
       return;
     }
 
+    const golsA = palpiteAtual.golsA === '' ? 0 : Number(palpiteAtual.golsA);
+    const golsB = palpiteAtual.golsB === '' ? 0 : Number(palpiteAtual.golsB);
+
     try {
       await addDoc(collection(db, "palpites"), {
         salaId: idSalaUrl,
         jogador: nomeUsuario.trim(),
         jogoId: jogoDestaque.id,
-        golsA: Number(palpiteAtual.golsA),
-        golsB: Number(palpiteAtual.golsB),
+        golsA: golsA,
+        golsB: golsB,
         criadoEm: new Date().toISOString()
       });
 
@@ -143,13 +154,16 @@ export default function Jogos() {
       return;
     }
 
+    const golsA = palpiteJogo.golsA === '' ? 0 : Number(palpiteJogo.golsA);
+    const golsB = palpiteJogo.golsB === '' ? 0 : Number(palpiteJogo.golsB);
+
     try {
       await addDoc(collection(db, "palpites"), {
         salaId: idSalaUrl,
         jogador: nomeUsuario.trim(),
         jogoId: jogo.id,
-        golsA: Number(palpiteJogo.golsA),
-        golsB: Number(palpiteJogo.golsB),
+        golsA: golsA,
+        golsB: golsB,
         criadoEm: new Date().toISOString()
       });
 
@@ -158,6 +172,8 @@ export default function Jogos() {
       console.error("Erro ao salvar palpite da lista", error);
     }
   };
+
+  const palpitesDoJogoAnterior = listaPalpitesAmigos.filter(p => p.jogoId === jogoAnterior?.id);
 
   return (
     <div className="font-sans max-w-7xl mx-auto p-5 grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -302,6 +318,8 @@ export default function Jogos() {
           listaPalpitesAmigos={listaPalpitesAmigos}
           jogoDestaque={jogoDestaque}
           outrosJogos={outrosJogos}
+          jogoAnterior={jogoAnterior}
+          palpitesDoJogoAnterior={palpitesDoJogoAnterior}
         />
         <Convite />
       </div>
