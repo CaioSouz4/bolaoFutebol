@@ -36,7 +36,7 @@ export default function Jogos() {
   const jogoDestaque = jogosOrdenados.find(jogo => {
     if (jogo.encerrado) return false;
     const horarioInicio = new Date(jogo.date);
-    const horarioTermino = new Date(horarioInicio.getTime() + (2 * 60 * 60 * 1000)); 
+    const horarioTermino = new Date(horarioInicio.getTime() + (115 * 60 * 1000)); 
     
     return now < horarioTermino;
   });

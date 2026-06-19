@@ -20,20 +20,20 @@ const matchesData = {
     L: { matches: [] }
   },
 
-   groupStageMatches: [
+  groupStageMatches: [
     // ==================== GRUPO A ====================
     { id: 1, group: "A", round: 1, timeA: "México", siglaA: "mx", timeB: "África do Sul", siglaB: "za", date: new Date("2026-06-11T16:00:00"), venue: "Cidade do México", encerrado: false },
-    { id: 2, group: "A", round: 1, timeA: "Coreia do Sul", siglaA: "kr", timeB: "República Tcheca", siglaB: "cz", date: new Date("2026-06-12T00:00:00"), venue: "Guadalajara", encerrado: false },
-    { id: 25, group: "A", round: 2, timeA: "República Tcheca", siglaA: "cz", timeB: "África do Sul", siglaB: "za", date: new Date("2026-06-18T13:00:00"), venue: "Atlanta", encerrado: false },
+    { id: 2, group: "A", round: 1, timeA: "Coreia do Sul", siglaA: "kr", timeB: "República Tcheca", siglaB: "cz", date: new Date("2026-06-12T13:00:00"), venue: "Guadalajara", encerrado: false }, // CORRIGIDO: 13:00
+    { id: 25, group: "A", round: 2, timeA: "República Tcheca", siglaA: "cz", timeB: "África do Sul", siglaB: "za", date: new Date("2026-06-18T16:00:00"), venue: "Atlanta", encerrado: false }, // CORRIGIDO: 16:00
     { id: 28, group: "A", round: 2, timeA: "México", siglaA: "mx", timeB: "Coreia do Sul", siglaB: "kr", date: new Date("2026-06-19T01:00:00"), venue: "Guadalajara", encerrado: false },
     { id: 56, group: "A", round: 3, timeA: "República Tcheca", siglaA: "cz", timeB: "México", siglaB: "mx", date: new Date("2026-06-24T23:00:00"), venue: "Cidade do México", encerrado: false },
     { id: 57, group: "A", round: 3, timeA: "África do Sul", siglaA: "za", timeB: "Coreia do Sul", siglaB: "kr", date: new Date("2026-06-24T23:00:00"), venue: "Monterrey", encerrado: false },
 
     // ==================== GRUPO B ====================
-    { id: 3, group: "B", round: 1, timeA: "Canadá", siglaA: "ca", timeB: "Bósnia", siglaB: "ba", date: new Date("2026-06-12T16:00:00"), venue: "Toronto", encerrado: false },
+    { id: 3, group: "B", round: 1, timeA: "Canadá", siglaA: "ca", timeB: "Bósnia", siglaB: "ba", date: new Date("2026-06-12T19:00:00"), venue: "Toronto", encerrado: false },
     { id: 5, group: "B", round: 1, timeA: "Qatar", siglaA: "qa", timeB: "Suíça", siglaB: "ch", date: new Date("2026-06-13T16:00:00"), venue: "São Francisco", encerrado: false },
-    { id: 26, group: "B", round: 2, timeA: "Suíça", siglaA: "ch", timeB: "Bósnia", siglaB: "ba", date: new Date("2026-06-18T19:00:00"), venue: "Los Angeles", encerrado: false },
-    { id: 27, group: "B", round: 2, timeA: "Canadá", siglaA: "ca", timeB: "Qatar", siglaB: "qa", date: new Date("2026-06-18T22:00:00"), venue: "Vancouver", encerrado: false },
+    { id: 26, group: "B", round: 2, timeA: "Suíça", siglaA: "ch", timeB: "Bósnia", siglaB: "ba", date: new Date("2026-06-18T15:00:00"), venue: "Los Angeles", encerrado: false }, // CORRIGIDO
+    { id: 27, group: "B", round: 2, timeA: "Canadá", siglaA: "ca", timeB: "Qatar", siglaB: "qa", date: new Date("2026-06-18T18:00:00"), venue: "Vancouver", encerrado: false }, // CORRIGIDO
     { id: 52, group: "B", round: 3, timeA: "Suíça", siglaA: "ch", timeB: "Canadá", siglaB: "ca", date: new Date("2026-06-24T16:00:00"), venue: "Vancouver", encerrado: false },
     { id: 53, group: "B", round: 3, timeA: "Bósnia", siglaA: "ba", timeB: "Qatar", siglaB: "qa", date: new Date("2026-06-24T16:00:00"), venue: "Seattle", encerrado: false },
 
@@ -46,7 +46,7 @@ const matchesData = {
     { id: 55, group: "C", round: 3, timeA: "Marrocos", siglaA: "ma", timeB: "Haiti", siglaB: "ht", date: new Date("2026-06-24T19:00:00"), venue: "Atlanta", encerrado: false },
 
     // ==================== GRUPO D ====================
-    { id: 4, group: "D", round: 1, timeA: "Estados Unidos", siglaA: "us", timeB: "Paraguai", siglaB: "py", date: new Date("2026-06-12T23:00:00"), venue: "Los Angeles", encerrado: false },
+    { id: 4, group: "D", round: 1, timeA: "Estados Unidos", siglaA: "us", timeB: "Paraguai", siglaB: "py", date: new Date("2026-06-12T22:00:00"), venue: "Los Angeles", encerrado: false }, // CORRIGIDO: 22:00
     { id: 6, group: "D", round: 1, timeA: "Austrália", siglaA: "au", timeB: "Turquia", siglaB: "tr", date: new Date("2026-06-13T02:00:00"), venue: "Vancouver", encerrado: false },
     { id: 30, group: "D", round: 2, timeA: "Turquia", siglaA: "tr", timeB: "Paraguai", siglaB: "py", date: new Date("2026-06-19T23:00:00"), venue: "São Francisco", encerrado: false },
     { id: 31, group: "D", round: 2, timeA: "Estados Unidos", siglaA: "us", timeB: "Austrália", siglaB: "au", date: new Date("2026-06-19T16:00:00"), venue: "Seattle", encerrado: false },
@@ -71,7 +71,7 @@ const matchesData = {
 
     // ==================== GRUPO G ====================
     { id: 17, group: "G", round: 1, timeA: "Bélgica", siglaA: "be", timeB: "Egito", siglaB: "eg", date: new Date("2026-06-15T16:00:00"), venue: "Seattle", encerrado: false },
-    { id: 18, group: "G", round: 1, timeA: "Irã", siglaA: "ir", timeB: "Nova Zelândia", siglaB: "nz", date: new Date("2026-06-15T22:00:00"), venue: "Los Angeles", encerrado: false },
+    { id: 18, group: "G", round: 1, timeA: "Irã", siglaA: "ir", timeB: "Nova Zelândia", siglaB: "nz", date: new Date("2026-06-15T19:00:00"), venue: "Los Angeles", encerrado: false }, // CORRIGIDO: 19:00
     { id: 42, group: "G", round: 2, timeA: "Bélgica", siglaA: "be", timeB: "Irã", siglaB: "ir", date: new Date("2026-06-21T16:00:00"), venue: "Los Angeles", encerrado: false },
     { id: 45, group: "G", round: 2, timeA: "Nova Zelândia", siglaA: "nz", timeB: "Egito", siglaB: "eg", date: new Date("2026-06-21T22:00:00"), venue: "Vancouver", encerrado: false },
     { id: 68, group: "G", round: 3, timeA: "Egito", siglaA: "eg", timeB: "Irã", siglaB: "ir", date: new Date("2026-06-26T23:00:00"), venue: "Seattle", encerrado: false },
@@ -103,9 +103,9 @@ const matchesData = {
 
     // ==================== GRUPO K ====================
     { id: 23, group: "K", round: 1, timeA: "Portugal", siglaA: "pt", timeB: "RD Congo", siglaB: "cd", date: new Date("2026-06-17T14:00:00"), venue: "Houston", encerrado: false },
-    { id: 24, group: "K", round: 1, timeA: "Uzbequistão", siglaA: "uz", timeB: "Colômbia", siglaB: "co", date: new Date("2026-06-18T00:00:00"), venue: "Cidade do México", encerrado: false },
+    { id: 24, group: "K", round: 1, timeA: "Uzbequistão", siglaA: "uz", timeB: "Colômbia", siglaB: "co", date: new Date("2026-06-17T22:00:00"), venue: "Cidade do México", encerrado: false }, // CORRIGIDO: 22:00
     { id: 50, group: "K", round: 2, timeA: "Portugal", siglaA: "pt", timeB: "Uzbequistão", siglaB: "uz", date: new Date("2026-06-23T14:00:00"), venue: "Houston", encerrado: false },
-    { id: 51, group: "K", round: 2, timeA: "Colômbia", siglaA: "co", timeB: "RD Congo", siglaB: "cd", date: new Date("2026-06-24T00:00:00"), venue: "Guadalajara", encerrado: false },
+    { id: 51, group: "K", round: 2, timeA: "Colômbia", siglaA: "co", timeB: "RD Congo", siglaB: "cd", date: new Date("2026-06-23T22:00:00"), venue: "Guadalajara", encerrado: false }, // CORRIGIDO: 22:00
     { id: 70, group: "K", round: 3, timeA: "Colômbia", siglaA: "co", timeB: "Portugal", siglaB: "pt", date: new Date("2026-06-27T20:30:00"), venue: "Miami", encerrado: false },
     { id: 71, group: "K", round: 3, timeA: "RD Congo", siglaA: "cd", timeB: "Uzbequistão", siglaB: "uz", date: new Date("2026-06-27T20:30:00"), venue: "Atlanta", encerrado: false },
 
